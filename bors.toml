@@ -1,4 +1,5 @@
 status = [
+  "buildkite/bors-testing"
 ]
 
 use_squash_merge = true
