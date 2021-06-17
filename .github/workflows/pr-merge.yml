@@ -18,9 +18,12 @@ jobs:
           git config user.email "$GIT_AUTHOR_EMAIL"
           gh pr checkout "$PR_NUMBER"
           SHA=$(git rev-parse HEAD)
-          git reset --hard main
-          git checkout "$SHA" .
+          git checkout main
+          git checkout -b staging-$PR_NUMBER
+          git merge --squash $SHA
           git commit -m "$PR_TITLE #$PR_NUMBER"
+          gh pr checkout "$PR_NUMBER"
+          git reset --hard staging-$PR_NUMBER
           git push -f
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
