@@ -1,0 +1,19 @@
+on:
+  pull_request_target:
+    branches:
+      - main
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+jobs:
+  ci:
+    name: PR CI
+    if: |
+      github.event.sender.login != 'TODO'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - run: ./pipeline.sh

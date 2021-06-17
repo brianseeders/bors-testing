@@ -1,5 +1,5 @@
 status = [
-  "buildkite/bors-testing"
+  "github/bors-testing"
 ]
 
-use_squash_merge = true
+use_squash_merge = false
