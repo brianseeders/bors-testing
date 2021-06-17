@@ -14,4 +14,12 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
+      - uses: ouzi-dev/commit-status-updater@v1.1.0
+        with:
+          name: 'bors-testing'
       - run: ./pipeline.sh
+      - if: always()
+        uses: ouzi-dev/commit-status-updater@v1.1.0
+        with:
+          name: 'bors-testing'
+          status: '${{ job.status }}'
