@@ -20,7 +20,7 @@ jobs:
           SHA=$(git rev-parse HEAD)
           git checkout main
           git checkout -b staging-$PR_NUMBER
-          git merge --squash $SHA
+          git merge --allow-unrelated-histories --squash $SHA 
           git commit -m "$PR_TITLE #$PR_NUMBER"
           gh pr checkout "$PR_NUMBER"
           git reset --hard staging-$PR_NUMBER
