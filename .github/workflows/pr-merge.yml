@@ -15,5 +15,5 @@ jobs:
       - name: Squash commits
         run: |
           git reset --hard main
-          git checkout . ${{ github.event.issue.pull_request.head.sha }}
+          git checkout ${{ github.event.issue.pull_request.head.sha }} .
           git push -f
