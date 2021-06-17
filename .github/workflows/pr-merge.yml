@@ -18,7 +18,9 @@ jobs:
           SHA=$(git rev-parse HEAD)
           git reset --hard main
           git checkout "$SHA" .
+          git commit -m "$PR_TITLE #$PR_NUMBER"
           git push -f
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.issue.number }}
+          PR_TITLE: ${{ github.event.issue.title }}
