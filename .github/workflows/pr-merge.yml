@@ -17,14 +17,17 @@ jobs:
           set -euxo pipefail
           git config user.name "$GIT_AUTHOR_NAME"
           git config user.email "$GIT_AUTHOR_EMAIL"
-          git config --list
           gh pr checkout "$PR_NUMBER"
           SHA=$(git rev-parse HEAD)
           git checkout main
           git checkout -b staging-$PR_NUMBER
           git rev-parse HEAD
           git status
-          git merge --allow-unrelated-histories --squash $SHA 
+          git config --list
+          git log main
+          git log $SHA
+          git reflog
+          git merge --squash $SHA 
           git commit -m "$PR_TITLE #$PR_NUMBER"
           gh pr checkout "$PR_NUMBER"
           git reset --hard staging-$PR_NUMBER
