@@ -23,17 +23,12 @@ jobs:
           SHA=$(git rev-parse HEAD)
           git checkout main
           git checkout -b staging-$PR_NUMBER
-          git rev-parse HEAD
-          git status
-          git config --list
-          git log main
-          git log $SHA
-          git reflog
           git merge --squash $SHA 
           git commit -m "$PR_TITLE #$PR_NUMBER"
           gh pr checkout "$PR_NUMBER"
           git reset --hard staging-$PR_NUMBER
           git push -f
+          gh pr comment "$PR_NUMBER" -b "bors merge"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GIT_AUTHOR_NAME: ${{ github.event.issue.user.login }}
