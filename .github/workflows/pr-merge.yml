@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Squash commits
         run: |
           set -euxo pipefail
