@@ -28,6 +28,7 @@ jobs:
           gh pr checkout "$PR_NUMBER"
           git reset --hard staging-$PR_NUMBER
           git push -f
+          sleep 3 # Make sure the comment is posted after Github has enough time to actually process the commit
           gh pr comment "$PR_NUMBER" -b "bors merge"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
