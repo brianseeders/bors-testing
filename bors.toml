@@ -1,5 +1,5 @@
 status = [
-  "github/bors-testing"
+  "bors-testing"
 ]
 
 use_squash_merge = false
